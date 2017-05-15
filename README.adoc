@@ -1,0 +1,21 @@
+= Spring Reactive Web Sample Project
+
+Spring Reactive Web Sample Project based on link:https://start.spring.io/[Start Spring] (with
+
+  - `Maven` and
+  - `Spring Boot` version `2.0.0-SNAPSHOT` (`@170515`);
+  - `g:de.mirb.pg.spring`;
+  - `a:reactive-spring`;
+  - dependencies: `Reactive Web`).
+
+[ TOC ]
+
+== Disclaimer
+Current source code and version is published without license. +
+If you (somebody) want to use this in his project please contact me.
+Afterwards I will grant the use of this code without warranty.
+When I find some time to inform myself about the different possible licenses at link:http://choosealicense.com[choosealicense.com]
+I will probably change to a suitable license.
+
+== General information
+Build a sample `Spring Reactive Web App`

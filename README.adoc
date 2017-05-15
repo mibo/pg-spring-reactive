@@ -19,3 +19,7 @@ I will probably change to a suitable license.
 
 == General information
 Build a sample `Spring Reactive Web App`
+
+== Start/Run Application
+
+To start the application via Maven (Shell) use `mvn spring-boot:run`.

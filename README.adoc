@@ -23,3 +23,15 @@ Build a sample `Spring Reactive Web App`
 == Start/Run Application
 
 To start the application via Maven (Shell) use `mvn spring-boot:run`.
+
+== Sample requests
+For sample request link:https://httpie.org/[HTTPie] is used.
+
+  * Single event: `http localhost:8080/events/123`
+  * List of events: `http localhost:8080/events amount:50`
+
+== Helpful links
+
+  * link:https://dzone.com/articles/spring-webflux-first-steps[DZone: First steps]
+  * link:https://dzone.com/articles/spring-reactive-samples[DZone: Reactive Sample]
+  * link:https://spring.io/blog/2017/02/23/spring-framework-5-0-m5-update[WebClient]

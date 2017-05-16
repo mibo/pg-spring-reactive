@@ -8,6 +8,8 @@ Spring Reactive Web Sample Project based on link:https://start.spring.io/[Start 
   - `a:reactive-spring`;
   - dependencies: `Reactive Web`).
 
+Also greatly inspired by this link:https://www.youtube.com/watch?v=zVNIZXf4BG8&t=1671s[talk from Josh Long] and according link:https://github.com/joshlong/flux-flix-service[GitHub Repo].
+
 [ TOC ]
 
 == Disclaimer
@@ -29,6 +31,12 @@ For sample request link:https://httpie.org/[HTTPie] is used.
 
   * Single event: `http localhost:8080/events/123`
   * List of events: `http localhost:8080/events amount:50`
+
+Or via `curl`
+
+  * Single event: `curl http://localhost:8080/events/123 | json_pp`
+  * List of events (100): `curl -H "amount:100" http://localhost:8080/events | json_pp`
+  * Stream of infinite events: `curl http://localhost:8080/infinite | json_pp`
 
 == Helpful links
 

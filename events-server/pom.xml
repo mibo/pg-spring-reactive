@@ -16,9 +16,7 @@
 	<description>reactive events server project based on Spring Boot</description>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<version.springloaded>1.2.6.RELEASE</version.springloaded>
 	</properties>
 
 	<dependencies>
@@ -26,6 +24,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
+
+    <!-- used for hot swapping support -->
+    <!-- see: https://docs.spring.io/spring-boot/docs/current/reference/html/howto-hotswapping.html#howto-reload-springloaded-maven -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>springloaded</artifactId>
+      <version>${version.springloaded}</version>
+    </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

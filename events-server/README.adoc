@@ -1,0 +1,22 @@
+= Event Server of the Spring Reactive Web Sample Project
+
+Event Server of the Spring Reactive Web Sample Project
+
+[ TOC ]
+
+== Start/Run Application
+
+To start the application via Maven (Shell) use `mvn spring-boot:run`.
+
+== Sample requests
+For sample request link:https://httpie.org/[HTTPie] is used.
+
+  * Single event: `http localhost:8080/events/123`
+  * List of events: `http localhost:8080/events amount:50`
+  * Infinite stream of events: `http -S localhost:8080/infinite`
+
+Or via `curl`
+
+  * Single event: `curl http://localhost:8080/events/123 | json_pp`
+  * List of events (100): `curl -H "amount:100" http://localhost:8080/events | json_pp`
+  * Stream of infinite events: `curl http://localhost:8080/infinite | json_pp`

@@ -22,22 +22,22 @@ I will probably change to a suitable license.
 == General information
 Build a sample `Spring Reactive Web App`
 
+== Current Features _(for latest stable version)_
+
+  * Get `Event` stream finite/infinite and get a single `Event`
+
+== New and Noteworthy
+
+  * Version `0.2.0-SNAPSHOT`
+    ** _TBD_: Refactoring in separate modules.
+  * Version `0.1.0`
+    ** First release which includes `Events` sample in the `event-server`
+
+
+
 == Start/Run Application
 
-To start the application via Maven (Shell) use `mvn spring-boot:run`.
-
-== Sample requests
-For sample request link:https://httpie.org/[HTTPie] is used.
-
-  * Single event: `http localhost:8080/events/123`
-  * List of events: `http localhost:8080/events amount:50`
-  * Infinite stream of events: `http -S localhost:8080/events amount:50`
-
-Or via `curl`
-
-  * Single event: `curl http://localhost:8080/events/123 | json_pp`
-  * List of events (100): `curl -H "amount:100" http://localhost:8080/events | json_pp`
-  * Stream of infinite events: `curl http://localhost:8080/infinite | json_pp`
+To start the application via Maven (Shell) change into the `events-server` module and follow the instructions in the `README` file.
 
 == Helpful links
 

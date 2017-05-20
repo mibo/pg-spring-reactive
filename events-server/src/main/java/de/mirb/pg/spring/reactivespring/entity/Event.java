@@ -1,4 +1,4 @@
-package de.mirb.pg.spring.reactivespring.domain;
+package de.mirb.pg.spring.reactivespring.entity;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package de.mirb.pg.spring.reactivespring.rest;
+package de.mirb.pg.spring.reactivespring.boundary;
 
-import de.mirb.pg.spring.reactivespring.domain.Event;
+import de.mirb.pg.spring.reactivespring.entity.Event;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

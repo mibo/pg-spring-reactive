@@ -1,7 +1,6 @@
-package de.mirb.pg.spring.reactivespring.rest;
+package de.mirb.pg.spring.reactivespring.control;
 
-import de.mirb.pg.spring.reactivespring.domain.Event;
-import de.mirb.pg.spring.reactivespring.domain.EventRepository;
+import de.mirb.pg.spring.reactivespring.entity.Event;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

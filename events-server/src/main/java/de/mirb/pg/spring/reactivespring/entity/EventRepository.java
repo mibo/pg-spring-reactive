@@ -34,7 +34,7 @@ public class EventRepository {
     return Mono.justOrEmpty(id2events.get(id));
   }
 
-  public Flux<Event> consumeHead(int maxAmount) {
+  public Flux<Event> consumeHeadEvents(int maxAmount) {
     int toConsume = maxAmount > eventsStack.size()? eventsStack.size(): maxAmount;
     List<Event> consumed = eventsStack.stream()
         .limit(toConsume)
@@ -42,6 +42,22 @@ public class EventRepository {
     // TODO: check if this is correct
     consumed.forEach(e -> id2events.remove(e.getId()));
     eventsStack.removeAll(consumed);
+    //
+    return Flux.fromStream(consumed.stream());
+  }
+
+  public Flux<Event> listEvents(int maxAmount, int skip) {
+    int size = eventsStack.size();
+    if(skip > size) {
+      return Flux.empty();
+    }
+    // reduce size with skipped amount
+    size -= skip;
+    int toConsume = maxAmount > size ? size : maxAmount;
+    List<Event> consumed = eventsStack.stream()
+        .skip(skip)
+        .limit(toConsume)
+        .collect(Collectors.toList());
     //
     return Flux.fromStream(consumed.stream());
   }

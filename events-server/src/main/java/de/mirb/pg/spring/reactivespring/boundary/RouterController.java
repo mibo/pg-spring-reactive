@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.RouterFunction;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 /**
@@ -15,9 +16,10 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class RouterController {
 
   @Bean
-  RouterFunction<?> routerFunction(EventHandler rh) {
-    return route(GET("/events"), rh::all)
-        .andRoute(GET("/events/{id}"), rh::byId)
-        .andRoute(GET("/infinite"), rh::events);
+  RouterFunction<?> routerFunction(EventHandler handler) {
+    return route(GET("/events"), handler::readEvents)
+        .andRoute(GET("/events/{id}"), handler::readEventById)
+        .andRoute(POST("/sample/infinite"), handler::createInfiniteEvents)
+        .andRoute(GET("/sample/infinite"), handler::infiniteEvents);
   }
 }

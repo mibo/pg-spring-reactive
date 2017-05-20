@@ -19,4 +19,7 @@ Or via `curl`
 
   * Single event: `curl http://localhost:8080/events/123 | json_pp`
   * List of events (100): `curl -H "amount:100" http://localhost:8080/events | json_pp`
-  * Stream of infinite events: `curl http://localhost:8080/infinite | json_pp`
+  ** List of events (100), skip first 10: `curl -H "amount:100" -H "skip:10" http://localhost:8080/events | json_pp`
+  * Consume events (10): `curl -H "amount:10" http://localhost:8080/events | json_pp`
+  * Stream of infinite events: `curl http://localhost:8080/sample/infinite | json_pp`
+  * Create infinite events: `curl -X POST -d '' "http://localhost:8080/sample/infinite | json_pp"`

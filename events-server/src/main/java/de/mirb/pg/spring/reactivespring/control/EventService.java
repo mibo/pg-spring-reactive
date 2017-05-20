@@ -9,7 +9,9 @@ import reactor.util.function.Tuple2;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 @Service
@@ -26,10 +28,14 @@ public class EventService {
   }
 
   public Flux<Event> consumeEvents(int amount) {
-    return eventRepository.consumeHead(amount);
+    return eventRepository.consumeHeadEvents(amount);
   }
 
-  public Flux<Event> infinite() {
+  public Flux<Event> listEvents(int amount, int skip) {
+    return eventRepository.listEvents(amount, skip);
+  }
+
+  public Flux<Event> createInfiniteEventStream() {
     Stream<Event> evStream = Stream.generate(() ->
         eventRepository.createEvent(UUID.randomUUID().toString().substring(24)).block());
     Flux<Event> eventFlux = Flux.fromStream(evStream);
@@ -38,12 +44,13 @@ public class EventService {
     return Flux.zip(eventFlux, interval).map(Tuple2::getT1);
   }
 
-  private Stream<Event> eventStream(int amount) {
-    Event[] events = new Event[amount];
-    for (int i = 0; i < amount; i++) {
-      events[i] = eventRepository.createEvent("Event num: " + i).block();
-    }
-    return Stream.of(events);
-  }
+  public Flux<Event> infiniteEventStream() {
+    AtomicInteger dummyIds = new AtomicInteger(new Random().nextInt(1000) + 10000);
+    Stream<Event> evStream = Stream.generate(() ->
+        new Event(dummyIds.getAndIncrement(), UUID.randomUUID().toString().substring(24), new Date()));
+    Flux<Event> eventFlux = Flux.fromStream(evStream);
+    Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
 
+    return Flux.zip(eventFlux, interval).map(Tuple2::getT1);
+  }
 }

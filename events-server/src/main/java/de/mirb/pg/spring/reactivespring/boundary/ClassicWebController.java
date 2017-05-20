@@ -12,6 +12,11 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+/**
+ * Note that as of Spring 5.0.0.M5, @RequestMapping and RouterFunction cannot be mixed in the same application yet
+ * (last checked at May 5, 2017).
+ * To use/test this class the <code>@Component</code> annotation at the {@link RouterController} must be removed.
+ */
 @RestController
 @RequestMapping("/classic")
 public class ClassicWebController {
@@ -38,7 +43,6 @@ public class ClassicWebController {
 
   @GetMapping(path = "/events/{id}")
   public Mono<Event> readEvent(@PathVariable("id") String id) {
-
     return Mono.just(new Event(id));
   }
 

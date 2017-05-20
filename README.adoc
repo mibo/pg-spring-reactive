@@ -44,4 +44,8 @@ To start the application via Maven (Shell) change into the `events-server` modul
   * link:https://dzone.com/articles/spring-webflux-first-steps[DZone: First steps]
   * link:https://dzone.com/articles/spring-reactive-samples[DZone: Reactive Sample]
   * link:https://spring.io/blog/2017/02/23/spring-framework-5-0-m5-update[WebClient]
-  * link:http://www.sparkbit.pl/spring-web-reactive-rest-controllers/[Blog: spring-web-reactive-rest-controllers/]
+  * _Router Samples_
+  ** link:http://www.sparkbit.pl/spring-web-reactive-rest-controllers/[Blog: spring-web-reactive-rest-controllers/]
+  ** link:https://spring.io/blog/2016/09/22/new-in-spring-5-functional-web-framework[Spring Blog: New in Spring 5: Functional web]
+  ** link:http://www.baeldung.com/spring-5-functional-web[Tutorial: Spring 5: Functional web]
+  ** link:https://github.com/spring-projects/spring-framework/blob/master/src/docs/asciidoc/web/web-flux.adoc[GitHub: Spring Projects]

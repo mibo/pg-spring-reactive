@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("classic")
+@RequestMapping("/classic")
 public class ClassicWebController {
 
   @GetMapping("/")
@@ -38,9 +38,8 @@ public class ClassicWebController {
 
   @GetMapping(path = "/events/{id}")
   public Mono<Event> readEvent(@PathVariable("id") String id) {
-    Mono<Event> response = Mono.just(new Event(id));
 
-    return response;
+    return Mono.just(new Event(id));
   }
 
   private Stream<Event> eventStream(int amount) {

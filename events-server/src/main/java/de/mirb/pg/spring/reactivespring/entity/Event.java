@@ -1,33 +1,19 @@
 package de.mirb.pg.spring.reactivespring.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Event {
-  final String name;
-  final Date timestamp;
-
-  public Event(String name, Date timestamp) {
-    this.name = name;
-    this.timestamp = timestamp;
-  }
+  private String name;
+  private Date timestamp;
 
   public Event(String name) {
     this(name, new Date());
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  @Override
-  public String toString() {
-    return "Event{" +
-        "name='" + name + '\'' +
-        ", timestamp=" + timestamp +
-        '}';
   }
 }

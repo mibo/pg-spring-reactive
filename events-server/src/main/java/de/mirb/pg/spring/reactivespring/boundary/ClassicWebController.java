@@ -1,6 +1,7 @@
 package de.mirb.pg.spring.reactivespring.boundary;
 
 import de.mirb.pg.spring.reactivespring.entity.Event;
+import de.mirb.pg.spring.reactivespring.entity.EventRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -21,6 +22,12 @@ import java.util.stream.Stream;
 @RequestMapping("/classic")
 public class ClassicWebController {
 
+  EventRepository eventRepository;
+
+  public ClassicWebController(EventRepository eventRepository) {
+    this.eventRepository = eventRepository;
+  }
+
   @GetMapping("/")
   public String welcome() {
     return "Hello World";
@@ -34,7 +41,7 @@ public class ClassicWebController {
   @GetMapping(path = "/infinite", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
   public Flux<Event> infinite() {
     Stream<Event> evStream = Stream.generate(() ->
-        new Event(UUID.randomUUID().toString().substring(24), new Date()));
+        eventRepository.createEvent(UUID.randomUUID().toString().substring(24)).block());
     Flux<Event> eventFlux = Flux.fromStream(evStream);
     Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
 
@@ -43,13 +50,13 @@ public class ClassicWebController {
 
   @GetMapping(path = "/events/{id}")
   public Mono<Event> readEvent(@PathVariable("id") String id) {
-    return Mono.just(new Event(id));
+    return eventRepository.readEvent(id);
   }
 
   private Stream<Event> eventStream(int amount) {
     Event[] events = new Event[amount];
     for (int i = 0; i < amount; i++) {
-      events[i] = new Event("Event num: " + i);
+      events[i] = eventRepository.createEvent("Event num: " + i).block();
     }
     return Stream.of(events);
   }

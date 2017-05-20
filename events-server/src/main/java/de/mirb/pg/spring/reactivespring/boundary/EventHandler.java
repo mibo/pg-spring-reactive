@@ -23,7 +23,7 @@ public class EventHandler {
 
   public Mono<ServerResponse> all(ServerRequest request) {
     Integer amount = getFirstHeaderAsInt(request);
-    return ok().body(eventService.readEvents(amount), Event.class);
+    return ok().body(eventService.consumeEvents(amount), Event.class);
   }
 
   public Mono<ServerResponse> byId(ServerRequest request) {

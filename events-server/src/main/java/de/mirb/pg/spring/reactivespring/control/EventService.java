@@ -1,6 +1,7 @@
 package de.mirb.pg.spring.reactivespring.control;
 
 import de.mirb.pg.spring.reactivespring.entity.Event;
+import de.mirb.pg.spring.reactivespring.entity.EventRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,18 +15,23 @@ import java.util.stream.Stream;
 @Service
 public class EventService {
 
-  public Mono<Event> readEvent(String id) {
+  EventRepository eventRepository;
 
-    return Mono.just(new Event(id));
+  public EventService(EventRepository eventRepository) {
+    this.eventRepository = eventRepository;
   }
 
-  public Flux<Event> readEvents(int amount) {
-    return Flux.fromStream(eventStream(amount));
+  public Mono<Event> readEvent(String id) {
+    return eventRepository.readEvent(id);
+  }
+
+  public Flux<Event> consumeEvents(int amount) {
+    return eventRepository.consumeHead(amount);
   }
 
   public Flux<Event> infinite() {
     Stream<Event> evStream = Stream.generate(() ->
-        new Event(UUID.randomUUID().toString().substring(24), new Date()));
+        eventRepository.createEvent(UUID.randomUUID().toString().substring(24)).block());
     Flux<Event> eventFlux = Flux.fromStream(evStream);
     Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
 
@@ -35,7 +41,7 @@ public class EventService {
   private Stream<Event> eventStream(int amount) {
     Event[] events = new Event[amount];
     for (int i = 0; i < amount; i++) {
-      events[i] = new Event("Event num: " + i);
+      events[i] = eventRepository.createEvent("Event num: " + i).block();
     }
     return Stream.of(events);
   }

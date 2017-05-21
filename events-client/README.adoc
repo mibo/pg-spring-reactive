@@ -1,0 +1,9 @@
+= Event Server of the Spring Reactive Web Sample Project
+
+Event Client for the Server of the Spring Reactive Web Sample Project
+
+[ TOC ]
+
+== Start/Run Application
+
+To start the application via Maven (Shell) use `mvn spring-boot:run`.

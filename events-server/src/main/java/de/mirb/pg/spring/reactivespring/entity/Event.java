@@ -3,6 +3,7 @@ package de.mirb.pg.spring.reactivespring.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Event {
-  private Integer id;
+  @NonNull private Integer id;
   private String name;
   private Date timestamp;
 

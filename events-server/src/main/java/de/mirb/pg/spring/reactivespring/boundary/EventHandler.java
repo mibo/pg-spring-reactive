@@ -2,6 +2,7 @@ package de.mirb.pg.spring.reactivespring.boundary;
 
 import de.mirb.pg.spring.reactivespring.control.EventService;
 import de.mirb.pg.spring.reactivespring.entity.Event;
+import lombok.Data;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -25,7 +26,7 @@ public class EventHandler {
   }
 
   public Mono<ServerResponse> createEvent(ServerRequest request) {
-    Mono<Event> reqEvent = request.bodyToMono(Event.class);
+    Mono<RequestEvent> reqEvent = request.bodyToMono(RequestEvent.class);
     Mono<Event> createdEvent = eventService.createEvent(reqEvent.block().getName());
     return created(URI.create("events/" + createdEvent.block().getId()))
         .body(createdEvent, Event.class);
@@ -56,5 +57,10 @@ public class EventHandler {
     return ok()
         .contentType(MediaType.TEXT_EVENT_STREAM)
         .body(eventService.infiniteEventStream(), Event.class);
+  }
+
+  @Data
+  private static class RequestEvent {
+    private String name;
   }
 }

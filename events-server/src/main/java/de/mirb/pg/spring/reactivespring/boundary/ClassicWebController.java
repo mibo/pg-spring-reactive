@@ -2,6 +2,7 @@ package de.mirb.pg.spring.reactivespring.boundary;
 
 import de.mirb.pg.spring.reactivespring.control.EventService;
 import de.mirb.pg.spring.reactivespring.entity.Event;
+import lombok.Data;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -38,8 +39,13 @@ public class ClassicWebController {
   }
 
   @PostMapping(path = "/events")
-  public Mono<Event> createEvent(@RequestBody Event reqEvent) {
+  public Mono<Event> createEvent(@RequestBody RequestEvent reqEvent) {
     return eventService.createEvent(reqEvent.getName());
+  }
+
+  @Data
+  private static class RequestEvent {
+    private String name;
   }
 
   @GetMapping(path = "/events/{id}")

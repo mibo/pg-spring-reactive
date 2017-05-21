@@ -19,6 +19,7 @@ public class RouterController {
   RouterFunction<?> routerFunction(EventHandler handler) {
     return route(GET("/events"), handler::readEvents)
         .andRoute(GET("/events/{id}"), handler::readEventById)
+        .andRoute(POST("/events"), handler::createEvent)
         .andRoute(POST("/sample/infinite"), handler::createInfiniteEvents)
         .andRoute(GET("/sample/infinite"), handler::infiniteEvents);
   }

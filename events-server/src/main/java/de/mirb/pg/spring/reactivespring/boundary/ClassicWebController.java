@@ -37,6 +37,11 @@ public class ClassicWebController {
     return eventService.createInfiniteEventStream();
   }
 
+  @PostMapping(path = "/events")
+  public Mono<Event> createEvent(@RequestBody Event reqEvent) {
+    return eventService.createEvent(reqEvent.getName());
+  }
+
   @GetMapping(path = "/events/{id}")
   public Mono<Event> readEvent(@PathVariable("id") String id) {
     return eventService.readEvent(id);

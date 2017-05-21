@@ -23,6 +23,10 @@ public class EventService {
     this.eventRepository = eventRepository;
   }
 
+  public Mono<Event> createEvent(String name) {
+    return eventRepository.createEvent(name);
+  }
+
   public Mono<Event> readEvent(String id) {
     return eventRepository.readEvent(id);
   }

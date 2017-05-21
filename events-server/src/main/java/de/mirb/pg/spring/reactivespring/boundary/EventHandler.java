@@ -24,6 +24,13 @@ public class EventHandler {
     this.eventService = eventService;
   }
 
+  public Mono<ServerResponse> createEvent(ServerRequest request) {
+    Mono<Event> reqEvent = request.bodyToMono(Event.class);
+    Mono<Event> createdEvent = eventService.createEvent(reqEvent.block().getName());
+    return created(URI.create("events/" + createdEvent.block().getId()))
+        .body(createdEvent, Event.class);
+  }
+
   public Mono<ServerResponse> readEvents(ServerRequest request) {
     Integer amount = getFirstHeaderAsInt(request, HEADER_AMOUNT, 10);
     Boolean consume = getFirstHeaderAsBoolean(request, HEADER_CONSUME, false);

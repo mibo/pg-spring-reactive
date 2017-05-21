@@ -28,8 +28,12 @@ Build a sample `Spring Reactive Web App`
 
 == New and Noteworthy
 
-  * Version `0.2.0-SNAPSHOT`
-    ** _TBD_: Refactoring in separate modules.
+  * Version `0.2.0`
+    ** Refactoring of packages.
+    ** Very simple backend/repo
+    ** Use _Functions_ (`RouterFunction`) instead of Annotations (`@RestController`)
+    *** Can not be used in parallel but I tried to keep both working/up-to-date
+    ** More samples including POST (infinite)
   * Version `0.1.0`
     ** First release which includes `Events` sample in the `event-server`
 

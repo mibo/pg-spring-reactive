@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.mirb.pg.spring</groupId>
 		<artifactId>reactive-events-parent</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
+		<version>0.2.0</version>
 	</parent>
 
 	<artifactId>reactive-events-server</artifactId>

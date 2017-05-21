@@ -28,6 +28,8 @@ Build a sample `Spring Reactive Web App`
 
 == New and Noteworthy
 
+  * Version `0.3.0-SNAPSHOT`
+    ** TBD: Client module
   * Version `0.2.0`
     ** Refactoring of packages.
     ** Very simple backend/repo
